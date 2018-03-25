@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Documentos";
+}
+
+<div class="container">
+    <div class="row">
+        <h2>Sistema de Control de Calidad</h2>
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>Versión</th>
+                    <th>Documento</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.00</td>
+                    <td><a href="#" class="text-danger">SRS.PDF</a></td>
+                    <td>@Html.ActionLink("Descargar", "#", "", null, new { @class = "btn btn-primary disabled" })</td>
+                </tr>
+                <tr>
+                    <td>1.01</td>
+                    <td><a href="#" class="text-danger">SRS - 2 .PDF</a></td>
+                    <td>@Html.ActionLink("Descargar", "#", "", null, new { @class = "btn btn-primary disabled  " })</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

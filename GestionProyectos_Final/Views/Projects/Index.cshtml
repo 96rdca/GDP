@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    var promotor = "Richard Casado";
+    var promotor1 = string.Empty;
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script>
+        var $rows = $('#table tr');
+        $('#search').keyup(function () {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+
+        function showModalPromotor(id) {
+            var modal = document.getElementById('promotor');
+            modal.style.display = "block";
+
+            document.getElementById('promotorID').setAttribute('value', id);
+            document.getElementById('promotorID').value = id;
+        }
+
+        function submitPromotor() {
+            document.getElementById('AsignarPromotor').submit();
+        }
+    </script>
+}
+
+<h2>Proyectos</h2>
+<div class="container">
+    <div class="row">
+        @Html.ActionLink("Agregar", "AddProject", "Projects", null, new { @class = "btn btn-primary", style = "border-radius:15px;" })
+        <br />
+        <br />
+        <div class=" row col-md-12 form-inline">
+            <i class="glyphicon glyphicon-search"></i>
+            <input type="text" id="search" class=" form-control" placeholder="Buscar" />
+        </div>
+        <br />
+        <div class="col-sm-10">
+            <table class="table table-responsive table-hover" id="table">
+                <thead class="text-center">
+                    <tr>
+                        <td>Nombre Clave</td>
+                        <td>Fecha de Inicio</td>
+                        <td>Estado</td>
+                        <td>Fecha Finalizacion</td>
+                        <td>Promotor</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SYSCC</td>
+                        <td>15/01/18</td>
+                        <td>Inactivo</td>
+                        <td>31/12/19</td>
+                        <td>Richard Casado</td>
+                        <td>@Html.ActionLink("Detalles", "Details", "Projects", null, new { @class = "btn btn-primary" })</td>
+                        <td>@Html.ActionLink(" Documentos", "ByProjects", "Documents", null, new { @class = "btn btn-success glyphicon glyphicon-list-alt", style = "height:33px;" })</td>
+                    </tr>
+                    <tr>
+                        <td>SYSCI</td>
+                        <td>30/11/17</td>
+                        <td>Activo</td>
+                        <td>31/12/18</td>
+                        <td>Richard Casado</td>
+                        <td>@Html.ActionLink("Detalles", "Details", "Projects", null, new { @class = "btn btn-primary" })</td>
+                        <td>@*@Html.ActionLink(" Documentos", "ByProjects", "Documents", null, new { @class = "btn btn-success glyphicon glyphicon-list-alt", style = "height:33px;" })*@</td>
+                    </tr>
+                    <tr>
+                        <td>SYSGDP</td>
+                        <td>24/05/16</td>
+                        <td>Terminado</td>
+                        <td>31/12/17</td>
+                        <td>
+                            @if (string.IsNullOrEmpty(promotor1))
+                            {
+                                <a class="btn btn-warning" data-toggle="modal" data-target="#promotor" onclick="showModalPromotor(1)">Asignar Promotor</a>
+                            }
+                            else
+                            {
+                                @promotor1
+                            }
+                        </td>
+                        <td>@Html.ActionLink("Detalles", "Details", "Projects", null, new { @class = "btn btn-primary" })</td>
+                        <td>@*@Html.ActionLink(" Documentos", "ByProjects", "Documents", null, new { @class = "btn btn-success glyphicon glyphicon-list-alt", style = "height:33px;" })*@</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div id="promotor" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Actualizar Promotor</h3>
+            </div>
+            <div class="modal-body">
+                <form id="AsignarPromotor" class="form-horizontal" method="post" action="@Url.Action("Index", "Projects")">
+                    <input type="hidden" id="PromotorID" name="PromotorID" value="" />
+                    <label class="control-label" for="promotor">Promotor:</label>
+                    <select id="PromotorID" name="PromotorID" class="form-control">
+                        @{
+                            List<string> empleados = new List<string>();
+                            empleados.Add("Richard Casado");
+                            empleados.Add("Fulkencia Martinez");
+                            empleados.Add("Fulkencio Rodriguez");
+                            empleados.Add("Hubieres Baez");
+                            empleados.Add("Danilo Fernandez");
+                            empleados.Add("Pedro Guillen");
+
+                            foreach (var item in empleados)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        }
+                    </select>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default" onclick="submitPromotor()">Guardar</a>
+            </div>
+        </div>
+    </div>
+</div>

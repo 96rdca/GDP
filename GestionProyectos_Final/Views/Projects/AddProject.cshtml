@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Agregar Proyecto";
+}
+
+<div class="container" style="margin:5px; padding:5px;">
+    <div class="row">
+        <h2>Datos del proyecto</h2>
+        <div class="col-sm-12" style="background-color:#e2e2e2;">
+            <form>
+                <br />
+                @*<p class="btn-lg">
+                    Id Promotor
+                </p>
+                <div class="col-sm-offset-2">
+                    <input class="form-control" type="text" />
+                </div>*@
+                <p class="btn-lg">
+                    Nombre Clave del Proyecto
+                </p>
+                <div class="col-sm-offset-2">
+                    <input class="form-control" type="text" />
+                </div>
+
+                <p class="btn-lg">
+                    Denominacion Comercial
+                </p>
+                <div class="col-sm-offset-2">
+                    <input class="form-control" type="text" />
+                </div>
+
+                <p class="btn-lg">
+                    Fecha Inicio
+                </p>
+                <div class="col-sm-offset-2">
+                    <input class="form-control" type="date" />
+                </div>
+
+                <p class="btn-lg">
+                    Fecha de Finalizacion
+                </p>
+                <div class="col-sm-offset-2">
+                    <input class="form-control" type="date"/>
+                </div>
+
+                <p class="btn-lg">
+                    Estado Actual
+                </p>
+                <div class="col-sm-offset-2">
+                    <input class="form-control" type="text" />
+                </div>
+                <div class="btn-group btn-toolbar" style="margin:5px; padding:4px;">
+                    <button class="btn btn-primary" type="submit" onclick="Guardado()">Guardar</button>
+                    @Html.ActionLink("Regresar", "Index", "Projects", null, new { @class = "btn btn-danger" })
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Guardado() {
+        alert("Se ha Guardado Correctamente los datos del proyecto");
+    }
+</script>

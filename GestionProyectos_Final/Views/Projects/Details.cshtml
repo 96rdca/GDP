@@ -1,0 +1,273 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <h2>Detalles SYSCI</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>
+                            <h5><b>Nombre Comercial : </b>Sistema de control de inventario</h5>
+                        </th>
+
+                        <th>
+                            <h5><b>Estado Actual : </b> Activo</h5>
+                            <h5><b>Promotor : </b> Richard Casado</h5>
+                        </th>
+
+                        <th>
+                            <h5><b>Fecha de Inicio : </b>30/11/17</h5>
+                            <h5><b>Fecha Limite : </b> 31/12/18</h5>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#NewTask" onclick="showModalNewTask(1)">Nueva Tarea</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#Modify" onclick="showModalModify(1)">Modificar Estado</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#InsertDocs" onclick="showModalInsertDocs()">Insertar Documento</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Nombre</b></td>
+                        <td><b>Estado</b></td>
+                        <td><b>Asignado</b></td>
+                        <td><b>Tiempo Estimado</b></td>
+                    </tr>
+                    <tr>
+                        <td>Implementar Login</td>
+                        <td>Terminado</td>
+                        <td>Hubieres Baez</td>
+                        <td>1 Hora</td>
+                    </tr>
+                    <tr>
+                        <td>Verificar la estructura de datos, y el guardado</td>
+                        <td>En Proceso</td>
+                        <td>Pedro Guillen</td>
+                        <td>3 Horas</td>
+                    </tr>
+                    <tr>
+                        <td>Validar los datos de los usuarios en todos los campos</td>
+                        <td>Pendiente</td>
+                        <td>Hubieres Baez</td>
+                        <td>2 Horas</td>
+                    </tr>
+                </tbody>
+            </table>
+            @Html.ActionLink("Regresar", "Index", "Projects", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</div>
+
+<div id="NewTask" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Nueva Tarea</h3>
+            </div>
+            <div class="modal-body">
+                <form id="AsignarNewTask" class="form-group" method="post" action="@Url.Action("Details", "Projects")">
+                    <input type="hidden" id="NewTaskID" name="NewTaskID" value="" />
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="NewTask">Asignar A:</label>
+                                <select id="NewTaskID" name="NewTaskID" class="form-control">
+                                    @{
+                                        List<string> empleados = new List<string>();
+                                        empleados.Add("");
+                                        empleados.Add("Richard Casado");
+                                        empleados.Add("Fulkencia Martinez");
+                                        empleados.Add("Fulkencio Rodriguez");
+                                        empleados.Add("Hubieres Baez");
+                                        empleados.Add("Danilo Fernandez");
+                                        empleados.Add("Pedro Guillen");
+
+                                        foreach (var item in empleados)
+                                        {
+                                    <option value="@item">@item</option>
+                                        }
+                                    }
+                                </select>
+
+                                <label class="control-label">Nombre</label>
+                                <input class="form-control" placeholder="Nombre de la tarea" type="text" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label">Estado</label>
+                                <select class="form-control">
+                                    @{
+                                        List<string> state = new List<string>();
+                                        state.Add("");
+                                        state.Add("Pendiente");
+                                        state.Add("En Progreso");
+                                        state.Add("Revision");
+                                        state.Add("Completado");
+
+                                        foreach (var i in state)
+                                        {
+                                    <option value="@i">@i</option>
+                                        }
+                                    }
+                                </select>
+
+                                <label class="control-label">Duración</label>
+                                <input class="form-control" type="number" max="170" placeholder="Horas" type="text" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="control-label">Descripción</label>
+                                <textarea class="form-control" type="text" rows="5" wrap="soft" cols="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-success" onclick="submitNewTask()">Guardar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="Modify" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Modificar</h3>
+            </div>
+            <div class="modal-body">
+                <form id="Modify" class="form-group" method="post" action="@Url.Action("Details", "Projects")">
+                    <input type="hidden" id="modifyID" name="modifyID" value="" />
+                    <div class="container">
+                        <label class="control-label">Tarea</label>
+                        <select class="form-control">
+                            @{
+                                List<string> aasign = new List<string>();
+                                aasign.Add("");
+                                aasign.Add("Verificar la estructura de datos, y el guardado");
+                                aasign.Add("Validar los datos de los usuarios en todos los campos");
+
+                                foreach (var e in aasign)
+                                {
+                            <option value="@e">@e</option>
+                                }
+                            }
+                        </select>
+
+                        <label class="control-label" for="Modify">Asignar A:</label>
+                        <select id="modifyID" name="modifyID" class="form-control">
+                            @{
+                                List<string> empleados1 = new List<string>();
+                                empleados.Add("");
+                                empleados.Add("Richard Casado");
+                                empleados.Add("Fulkencia Martinez");
+                                empleados.Add("Fulkencio Rodriguez");
+                                empleados.Add("Hubieres Baez");
+                                empleados.Add("Danilo Fernandez");
+                                empleados.Add("Pedro Guillen");
+
+                                foreach (var item in empleados)
+                                {
+                            <option value="@item">@item</option>
+                                        }
+                            }
+                        </select>
+
+                        <label class="control-label">Estado</label>
+                        <select class="form-control">
+                            @{
+                                        List<string> state1 = new List<string>();
+                                        state1.Add("");
+                                        state1.Add("Pendiente");
+                                        state1.Add("En Progreso");
+                                        state1.Add("Revision");
+                                        state1.Add("Completado");
+
+                                        foreach (var i in state1)
+                                        {
+                            <option value="@i">@i</option>
+                                        }
+                            }
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-success" onclick="submitModify()">Guardar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="InsertDocs" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Insertar Documento</h3>
+            </div>
+            <div class="modal-body">
+                <form id="InsertDocs" class="form-group" method="post" action="@Url.Action("Details", "Projects")">
+                    <input type="hidden" id="InsertdDocsID" name="InsertdDocsID" value="" />
+                    <input type="file" class="form-control" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-success" onclick="submitInsertDocs()">Guardar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.2.1.js"></script>
+<script>
+    function showModalNewTask(id) {
+        var modal = document.getElementById('promotor');
+        modal.style.display = "block";
+
+        document.getElementById('promotorID').setAttribute('value', id);
+        document.getElementById('promotorID').value = id;
+    }
+
+    function submitNewTask() {
+        document.getElementById('Modify').submit();
+    }
+
+    function showModalModify(id) {
+        var modal = document.getElementById('modify');
+        modal.style.display = "block";
+
+        document.getElementById('modifyID').setAttribute('value', id);
+        document.getElementById('modifyID').value = id;
+    }
+
+    function submitModify() {
+        document.getElementById('Modify').submit();
+    }
+
+    function showModalInsertDocs() {
+        var modal = document.getElementById('InsertDocs');
+        modal.style.display = "block";
+
+        document.getElementById('InsertDocsID').setAttribute('value', id);
+        document.getElementById('InsertDocsID').value = id;
+    }
+
+    function submitInsertDocs() {
+        document.getElementById('InsertDocs').submit();
+    }
+
+</script>
