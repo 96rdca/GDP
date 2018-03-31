@@ -5,8 +5,8 @@
 
 
 @section scripts{
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script>
         var $rows = $('#table tr');
         $('#search').keyup(function () {
             var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
@@ -16,24 +16,28 @@
                 return !~text.indexOf(val);
             }).hide();
         });
-</script>
-    }
+    </script>
+}
 
 
 <div class="container">
     <div class="row">
-        <h2>Empleados</h2>
+        <div class="col-md-10">
+            <h2>Empleados</h2>
+        </div>
+        
 
-        <div class="col-sm-12">
-            @*@Html.ActionLink(" Buscar", "Search", "Employee", null, new { @class = "btn glyphicon btn-primary glyphicon-search", style = "height:33px" })*@
+        <div class="col-md-12">
             <br />
-            <div class=" row col-md-12 form-inline">
+            <div class=" row col-md-4 form-inline pull-right">
+                <input type="text" id="search" class="form-control" placeholder="Buscar" />
                 <i class="glyphicon glyphicon-search"></i>
-                <input type="text" id="search" class=" form-control" placeholder="Buscar" />
+                <br />
+                <br />
             </div>
-            
+
             <table class="table table-hover table-responsive" id="table">
-                <thead>
+                <thead class="label-default" style="color:white;">
                     <tr>
                         <th>Id Empleado</th>
                         <th>Nombres</th>

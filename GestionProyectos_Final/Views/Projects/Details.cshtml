@@ -4,46 +4,57 @@
 }
 
 <div class="container">
-    <h2>Detalles SYSCI</h2>
     <div class="row">
-        <div class="col-md-12">
-            <table class="table table-condensed">
+
+    </div>
+    <div class="panel">
+        <div class="panel-title panel-default">
+            <h2 class="panel-heading">Detalles SYSCI</h2>
+            <table class="table">
                 <thead>
                     <tr>
                         <th>
                             <h5><b>Nombre Comercial : </b>Sistema de control de inventario</h5>
                         </th>
-
                         <th>
                             <h5><b>Estado Actual : </b> Activo</h5>
                             <h5><b>Promotor : </b> Richard Casado</h5>
                         </th>
-
                         <th>
                             <h5><b>Fecha de Inicio : </b>30/11/17</h5>
                             <h5><b>Fecha Limite : </b> 31/12/18</h5>
                         </th>
-                        <th></th>
+                        <th>
+                            <!-- Single button -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Acciones <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu btn-primary">
+                                    <li><a class="btn" data-toggle="modal" data-target="#NewTask" onclick="showModalNewTask(1)">Nueva Tarea</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a class="btn" data-toggle="modal" data-target="#Modify" onclick="showModalModify(1)">Modificar Estado</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a class="btn" data-toggle="modal" data-target="#InsertDocs" onclick="showModalInsertDocs()">Insertar Documento</a></li>
+                                </ul>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th><b>Nombre</b></th>
+                        <th><b>Estado</b></th>
+                        <th><b>Asignado</b></th>
+                        <th><b>Tiempo Estimado</b></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <a class="btn btn-primary" data-toggle="modal" data-target="#NewTask" onclick="showModalNewTask(1)">Nueva Tarea</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-primary" data-toggle="modal" data-target="#Modify" onclick="showModalModify(1)">Modificar Estado</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-primary" data-toggle="modal" data-target="#InsertDocs" onclick="showModalInsertDocs()">Insertar Documento</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b>Nombre</b></td>
-                        <td><b>Estado</b></td>
-                        <td><b>Asignado</b></td>
-                        <td><b>Tiempo Estimado</b></td>
-                    </tr>
+
                     <tr>
                         <td>Implementar Login</td>
                         <td>Terminado</td>
@@ -95,7 +106,7 @@
 
                                         foreach (var item in empleados)
                                         {
-                                    <option value="@item">@item</option>
+                                            <option value="@item">@item</option>
                                         }
                                     }
                                 </select>
@@ -116,13 +127,13 @@
 
                                         foreach (var i in state)
                                         {
-                                    <option value="@i">@i</option>
+                                            <option value="@i">@i</option>
                                         }
                                     }
                                 </select>
 
                                 <label class="control-label">Duración</label>
-                                <input class="form-control" type="number" max="170" placeholder="Horas" type="text" />
+                                <input class="form-control" type="number" max="170" placeholder="Horas" />
                             </div>
                         </div>
                         <div class="row">
@@ -161,7 +172,7 @@
 
                                 foreach (var e in aasign)
                                 {
-                            <option value="@e">@e</option>
+                                    <option value="@e">@e</option>
                                 }
                             }
                         </select>
@@ -180,25 +191,25 @@
 
                                 foreach (var item in empleados)
                                 {
-                            <option value="@item">@item</option>
-                                        }
+                                    <option value="@item">@item</option>
+                                }
                             }
                         </select>
 
                         <label class="control-label">Estado</label>
                         <select class="form-control">
                             @{
-                                        List<string> state1 = new List<string>();
-                                        state1.Add("");
-                                        state1.Add("Pendiente");
-                                        state1.Add("En Progreso");
-                                        state1.Add("Revision");
-                                        state1.Add("Completado");
+                                List<string> state1 = new List<string>();
+                                state1.Add("");
+                                state1.Add("Pendiente");
+                                state1.Add("En Progreso");
+                                state1.Add("Revision");
+                                state1.Add("Completado");
 
-                                        foreach (var i in state1)
-                                        {
-                            <option value="@i">@i</option>
-                                        }
+                                foreach (var i in state1)
+                                {
+                                    <option value="@i">@i</option>
+                                }
                             }
                         </select>
                     </div>

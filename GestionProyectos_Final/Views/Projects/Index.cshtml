@@ -1,7 +1,6 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    var promotor = "Richard Casado";
     var promotor1 = string.Empty;
 }
 
@@ -32,28 +31,31 @@
     </script>
 }
 
-<h2>Proyectos</h2>
+
 <div class="container">
     <div class="row">
-        @Html.ActionLink("Agregar", "AddProject", "Projects", null, new { @class = "btn btn-primary", style = "border-radius:15px;" })
-        <br />
-        <br />
-        <div class=" row col-md-12 form-inline">
-            <i class="glyphicon glyphicon-search"></i>
-            <input type="text" id="search" class=" form-control" placeholder="Buscar" />
+        <div class="col-md-10">
+            <h2>Proyectos</h2>
         </div>
-        <br />
-        <div class="col-sm-10">
+       <br />
+       <div class=" row col-md-4 form-inline pull-right">
+           <input type="text" id="search" class=" form-control" placeholder="Buscar" />
+           <i class="glyphicon glyphicon-search"></i>
+           <br />
+           <br />
+       </div>
+        
+        <div class="col-md-12">
             <table class="table table-responsive table-hover" id="table">
                 <thead class="text-center">
-                    <tr>
-                        <td>Nombre Clave</td>
-                        <td>Fecha de Inicio</td>
-                        <td>Estado</td>
-                        <td>Fecha Finalizacion</td>
-                        <td>Promotor</td>
-                        <td></td>
-                        <td></td>
+                    <tr class="label-default" style="color:white;">
+                        <th>Nombre Clave</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Estado</th>
+                        <th>Fecha Finalizacion</th>
+                        <th>Promotor</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,7 +75,7 @@
                         <td>31/12/18</td>
                         <td>Richard Casado</td>
                         <td>@Html.ActionLink("Detalles", "Details", "Projects", null, new { @class = "btn btn-primary" })</td>
-                        <td>@*@Html.ActionLink(" Documentos", "ByProjects", "Documents", null, new { @class = "btn btn-success glyphicon glyphicon-list-alt", style = "height:33px;" })*@</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>SYSGDP</td>
@@ -82,19 +84,20 @@
                         <td>31/12/17</td>
                         <td>
                             @if (string.IsNullOrEmpty(promotor1))
-                            {
-                                <a class="btn btn-warning" data-toggle="modal" data-target="#promotor" onclick="showModalPromotor(1)">Asignar Promotor</a>
-                            }
-                            else
-                            {
-                                @promotor1
-                            }
+                        {
+                            <a class="btn btn-warning" data-toggle="modal" data-target="#promotor" onclick="showModalPromotor(1)">Asignar Promotor</a>
+                    }
+                    else
+                    {
+                        @promotor1
+                }
                         </td>
                         <td>@Html.ActionLink("Detalles", "Details", "Projects", null, new { @class = "btn btn-primary" })</td>
-                        <td>@*@Html.ActionLink(" Documentos", "ByProjects", "Documents", null, new { @class = "btn btn-success glyphicon glyphicon-list-alt", style = "height:33px;" })*@</td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
+            @Html.ActionLink("Agregar", "AddProject", "Projects", null, new { @class = "btn btn-primary", style = "border-radius:15px;" })
         </div>
     </div>
 </div>
